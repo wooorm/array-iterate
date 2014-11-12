@@ -1,0 +1,31 @@
+{
+  "name": "array-iterate",
+  "main": "index.js",
+  "description": "forEach with the possibility to change the next position",
+  "license": "MIT",
+  "keywords": [
+    "array",
+    "list",
+    "iterate",
+    "walk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/array-iterate.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "build/",
+    "components/",
+    "coverage/",
+    "node_modules/",
+    "component.json",
+    "package.json",
+    "test.js"
+  ]
+}
