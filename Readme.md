@@ -55,4 +55,4 @@ Functions just like [`Array#forEach()`](https://developer.mozilla.org/en-US/docs
 
 ## License
 
-MIT © Titus Wormer
+MIT © [Titus Wormer](http://wooorm.com)
