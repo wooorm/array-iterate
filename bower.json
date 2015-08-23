@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wooorm/mdast-util-heading-range.git"
+    "url": "https://github.com/wooorm/array-iterate.git"
   },
   "authors": [
     "Titus Wormer <tituswormer@gmail.com>"

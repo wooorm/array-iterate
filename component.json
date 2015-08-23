@@ -1,5 +1,5 @@
 {
-  "name": "mdast-util-heading-range",
+  "name": "array-iterate",
   "version": "1.0.0",
   "description": "forEach with the possibility to change the next position",
   "license": "MIT",
