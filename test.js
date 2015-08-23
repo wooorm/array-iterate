@@ -1,104 +1,102 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module array-iterate
+ * @fileoverview Test suite for array-iterate.
+ */
+
 'use strict';
 
-/**
+/* eslint-env node, mocha */
+
+/*
  * Dependencies.
  */
 
-var iterate,
-    assert;
+var assert = require('assert');
+var iterate = require('./');
 
-iterate = require('./');
-assert = require('assert');
+/*
+ * Methods.
+ */
 
-/**
+var throws = assert.throws;
+var equal = assert.strictEqual;
+
+/*
  * Tests.
  */
 
 describe('iterate()', function () {
-    it('should be a `function`', function () {
-        assert(typeof iterate === 'function');
-    });
-
     it('should throw when no `values` are given', function () {
-        assert.throws(function () {
+        throws(function () {
             iterate();
         }, /\|this\| not be undefined/);
     });
 
     it('should throw when an object without `length` is given', function () {
-        assert.throws(function () {
+        throws(function () {
             iterate({});
         }, /\|this\| has a `length`/);
     });
 
     it('should throw when no `callback` is given', function () {
-        assert.throws(function () {
+        throws(function () {
             iterate([]);
         }, /must be a function/);
     });
 
     it('should iterate over an array with `value`, `index`, and `values`',
         function () {
-            var list,
-                n;
-
-            list = [0, 1, 2];
-
-            n = 0;
+            var list = [0, 1, 2];
+            var n = 0;
 
             iterate(list, function (value, index, values) {
-                assert(value === n);
-                assert(index === n);
-                assert(values === list);
+                equal(value, n);
+                equal(index, n);
+                equal(values, list);
 
                 n++;
             });
 
-            assert(n === 3);
+            equal(n, 3);
         }
     );
 
     it('should invoke `callback` with `undefined` as context', function () {
-        var n;
-
-        n = 0;
+        var n = 0;
 
         iterate([1, 2, 3], function () {
-            assert(this === undefined);
+            equal(this, undefined);
 
             n++;
         });
 
-        assert(n === 3);
+        equal(n, 3);
     });
 
     it('should invoke `callback` with the given `context`', function () {
-        var scope,
-            n;
-
-        scope = this;
-
-        n = 0;
+        var self = this;
+        var n = 0;
 
         iterate([1, 2, 3], function () {
-            assert(this === scope);
+            equal(this, self);
 
             n++;
-        }, scope);
+        }, self);
 
-        assert(n === 3);
+        equal(n, 3);
     });
 
     it('should change the next position when `callback` returns a number',
         function () {
-            var n;
-
-            n = 0;
+            var n = 0;
 
             iterate([0, 1, 2], function (value, index) {
                 n++;
 
-                assert(value === index);
+                equal(value, index);
 
                 /**
                  * Stay on position `0` ten times.
@@ -109,42 +107,34 @@ describe('iterate()', function () {
                 }
             });
 
-            assert(n === 13);
+            equal(n, 13);
         }
     );
 
     it('should ignore missing values', function () {
-        var list,
-            magicNumber,
-            n;
-
-        magicNumber = 10;
-
-        list = Array(magicNumber);
+        var magicNumber = 10;
+        var list = Array(magicNumber);
+        var n;
 
         list.push(magicNumber + 1);
 
         iterate(list, function (value, index) {
-            assert(value === magicNumber + 1);
+            equal(value, magicNumber + 1);
 
-            assert(index === magicNumber);
+            equal(index, magicNumber);
 
             n = index;
         });
 
-        assert(n === magicNumber);
+        equal(n, magicNumber);
     });
 
     it('should NOT fail when a negative index is returned', function () {
-        var results,
-            n;
-
-        n = 0;
-
-        results = ['a', 'b', 'a', 'b', 'c', 'd'];
+        var n = 0;
+        var results = ['a', 'b', 'a', 'b', 'c', 'd'];
 
         iterate(['a', 'b', 'c', 'd'], function (value) {
-            assert(value === results[n]);
+            equal(value, results[n]);
 
             n++;
 
@@ -153,6 +143,6 @@ describe('iterate()', function () {
             }
         });
 
-        assert(n === results.length);
+        equal(n, results.length);
     });
 });

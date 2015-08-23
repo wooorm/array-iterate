@@ -1,6 +1,6 @@
 {
   "name": "array-iterate",
-  "main": "index.js",
+  "main": "array-iterate.js",
   "description": "forEach with the possibility to change the next position",
   "license": "MIT",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wooorm/array-iterate.git"
+    "url": "https://github.com/wooorm/mdast-util-heading-range.git"
   },
   "authors": [
     "Titus Wormer <tituswormer@gmail.com>"
@@ -24,8 +24,11 @@
     "components/",
     "coverage/",
     "node_modules/",
+    "build.js",
+    "example.js",
+    "index.js",
+    "test.js",
     "component.json",
-    "package.json",
-    "test.js"
+    "package.json"
   ]
 }

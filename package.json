@@ -1,5 +1,5 @@
 {
-  "name": "array-iterate",
+  "name": "mdast-util-heading-range",
   "version": "0.1.0",
   "description": "forEach with the possibility to change the next position",
   "license": "MIT",
@@ -9,25 +9,38 @@
     "iterate",
     "walk"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/array-iterate.git"
-  },
+  "repository": "wooorm/array-iterate",
   "author": "Titus Wormer <tituswormer@gmail.com>",
+  "files": [
+    "index.js"
+  ],
   "devDependencies": {
-    "eslint": "^0.10.0",
+    "browserify": "^11.0.0",
+    "eslint": "^1.0.0",
+    "esmangle": "^1.0.0",
     "istanbul": "^0.3.0",
-    "jscs": "^1.0.0",
+    "jscs": "^2.0.0",
+    "jscs-jsdoc": "^1.0.0",
+    "mdast": "^1.0.0",
+    "mdast-comment-config": "^1.0.0",
+    "mdast-github": "^1.0.0",
+    "mdast-lint": "^1.0.0",
+    "mdast-slug": "^1.0.0",
+    "mdast-validate-links": "^1.0.0",
     "mocha": "^2.0.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test.js",
-    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test.js",
-    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test.js",
-    "lint-api": "node_modules/.bin/eslint index.js",
-    "lint-test": "node_modules/.bin/eslint test.js --env mocha",
-    "lint-style": "node_modules/.bin/jscs index.js test.js --reporter=inline",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-style",
-    "make": "npm run lint && npm run coverage"
+    "test-api": "mocha --check-leaks test.js",
+    "test-coverage": "istanbul cover _mocha -- test.js",
+    "test-travis": "npm run test-coverage",
+    "test": "npm run test-api",
+    "lint-api": "eslint .",
+    "lint-style": "jscs --reporter inline .",
+    "lint": "npm run lint-api && npm run lint-style",
+    "make": "npm run lint && npm run test-coverage",
+    "bundle": "browserify index.js --no-builtins -s arrayIterate > array-iterate.js",
+    "postbundle": "esmangle array-iterate.js > array-iterate.min.js",
+    "build-md": "mdast . --quiet",
+    "build": "npm run bundle && npm run build-md"
   }
 }
