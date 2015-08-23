@@ -1,6 +1,6 @@
 {
   "name": "mdast-util-heading-range",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "forEach with the possibility to change the next position",
   "license": "MIT",
   "keywords": [
