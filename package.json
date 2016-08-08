@@ -27,7 +27,7 @@
     "mdast-lint": "^1.0.0",
     "mdast-slug": "^1.0.0",
     "mdast-validate-links": "^1.0.0",
-    "mocha": "^2.0.0"
+    "mocha": "^3.0.2"
   },
   "scripts": {
     "test-api": "mocha --check-leaks test.js",
