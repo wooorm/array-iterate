@@ -3,146 +3,124 @@
  * @copyright 2015 Titus Wormer
  * @license MIT
  * @module array-iterate
- * @fileoverview Test suite for array-iterate.
+ * @fileoverview Test suite for `array-iterate`.
  */
 
 'use strict';
 
-/* eslint-env node, mocha */
-
-/*
- * Dependencies.
- */
-
-var assert = require('assert');
+/* Dependencies. */
+var test = require('tape');
 var iterate = require('./');
 
-/*
- * Methods.
- */
+/* Tests. */
+test('iterate()', function (t) {
+  t.throws(
+    function () {
+      iterate();
+    },
+    /^Error: Iterate requires that \|this\| not be undefined$/,
+    'should throw without `values`'
+  );
 
-var throws = assert.throws;
-var equal = assert.strictEqual;
+  t.throws(
+    function () {
+      iterate({});
+    },
+    /Error: Iterate requires that \|this\| has a `length`/,
+    'should throw without `values.length`'
+  );
 
-/*
- * Tests.
- */
+  t.throws(
+    function () {
+      iterate([]);
+    },
+    /^Error: `callback` must be a function$/,
+    'should throw without `callback`'
+  );
 
-describe('iterate()', function () {
-    it('should throw when no `values` are given', function () {
-        throws(function () {
-            iterate();
-        }, /\|this\| not be undefined/);
+  t.test('should invoke `callback` each step', function (st) {
+    var list = [0, 1, 2];
+    var n = 0;
+
+    iterate(list, function (value, index, values) {
+      st.equal(value, n);
+      st.equal(index, n);
+      st.equal(values, list);
+      st.equal(this, undefined);
+
+      n++;
     });
 
-    it('should throw when an object without `length` is given', function () {
-        throws(function () {
-            iterate({});
-        }, /\|this\| has a `length`/);
+    st.equal(n, 3);
+    st.end();
+  });
+
+  t.test('should invoke `callback` with context', function (st) {
+    var self = this;
+    var n = 0;
+
+    iterate([1, 2, 3], function () {
+      st.equal(this, self);
+      n++;
+    }, self);
+
+    st.equal(n, 3);
+    st.end();
+  });
+
+  t.test('should use the given return value', function (st) {
+    var n = 0;
+
+    iterate([0, 1, 2], function (value, index) {
+      n++;
+
+      st.equal(value, index);
+
+      /* Stay on position `0` ten times. */
+      if (n <= 10) {
+        return 0;
+      }
     });
 
-    it('should throw when no `callback` is given', function () {
-        throws(function () {
-            iterate([]);
-        }, /must be a function/);
+    st.equal(n, 13);
+
+    st.end();
+  });
+
+  t.test('should ignore missing values', function (st) {
+    var magicNumber = 10;
+    var list = Array(magicNumber);
+    var n;
+
+    list.push(magicNumber + 1);
+
+    iterate(list, function (value, index) {
+      st.equal(value, magicNumber + 1);
+      st.equal(index, magicNumber);
+      n = index;
     });
 
-    it('should iterate over an array with `value`, `index`, and `values`',
-        function () {
-            var list = [0, 1, 2];
-            var n = 0;
+    st.equal(n, magicNumber);
 
-            iterate(list, function (value, index, values) {
-                equal(value, n);
-                equal(index, n);
-                equal(values, list);
+    st.end();
+  });
 
-                n++;
-            });
+  t.test('should support negative indices', function (st) {
+    var n = 0;
+    var results = ['a', 'b', 'a', 'b', 'c', 'd'];
 
-            equal(n, 3);
-        }
-    );
+    iterate(['a', 'b', 'c', 'd'], function (value) {
+      st.equal(value, results[n]);
+      n++;
 
-    it('should invoke `callback` with `undefined` as context', function () {
-        var n = 0;
-
-        iterate([1, 2, 3], function () {
-            equal(this, undefined);
-
-            n++;
-        });
-
-        equal(n, 3);
+      if (n === 2) {
+        return -1;
+      }
     });
 
-    it('should invoke `callback` with the given `context`', function () {
-        var self = this;
-        var n = 0;
+    st.equal(n, results.length);
+    st.end();
+  });
 
-        iterate([1, 2, 3], function () {
-            equal(this, self);
-
-            n++;
-        }, self);
-
-        equal(n, 3);
-    });
-
-    it('should change the next position when `callback` returns a number',
-        function () {
-            var n = 0;
-
-            iterate([0, 1, 2], function (value, index) {
-                n++;
-
-                equal(value, index);
-
-                /**
-                 * Stay on position `0` ten times.
-                 */
-
-                if (n <= 10) {
-                    return 0;
-                }
-            });
-
-            equal(n, 13);
-        }
-    );
-
-    it('should ignore missing values', function () {
-        var magicNumber = 10;
-        var list = Array(magicNumber);
-        var n;
-
-        list.push(magicNumber + 1);
-
-        iterate(list, function (value, index) {
-            equal(value, magicNumber + 1);
-
-            equal(index, magicNumber);
-
-            n = index;
-        });
-
-        equal(n, magicNumber);
-    });
-
-    it('should NOT fail when a negative index is returned', function () {
-        var n = 0;
-        var results = ['a', 'b', 'a', 'b', 'c', 'd'];
-
-        iterate(['a', 'b', 'c', 'd'], function (value) {
-            equal(value, results[n]);
-
-            n++;
-
-            if (n === 2) {
-                return -1;
-            }
-        });
-
-        equal(n, results.length);
-    });
+  t.end();
 });

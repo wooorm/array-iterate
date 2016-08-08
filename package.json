@@ -9,38 +9,79 @@
     "iterate",
     "walk"
   ],
-  "repository": "wooorm/array-iterate",
-  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "dependencies": {
+    "has": "^1.0.1"
+  },
+  "repository": "https://github.com/wooorm/array-iterate",
+  "bugs": "https://github.com/wooorm/array-iterate/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "engines": {
+    "node": ">=0.11.0"
+  },
   "files": [
     "index.js"
   ],
   "devDependencies": {
-    "browserify": "^11.0.0",
-    "eslint": "^1.0.0",
+    "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
-    "istanbul": "^0.3.0",
-    "jscs": "^2.0.0",
-    "jscs-jsdoc": "^1.0.0",
-    "mdast": "^1.0.0",
-    "mdast-comment-config": "^1.0.0",
-    "mdast-github": "^1.0.0",
-    "mdast-lint": "^1.0.0",
-    "mdast-slug": "^1.0.0",
-    "mdast-validate-links": "^1.0.0",
-    "mocha": "^2.0.0"
+    "nyc": "^7.1.0",
+    "remark-cli": "^1.0.0",
+    "remark-comment-config": "^4.0.0",
+    "remark-github": "^5.0.0",
+    "remark-lint": "^4.0.0",
+    "remark-toc": "^3.0.0",
+    "remark-validate-links": "^4.0.0",
+    "tape": "^4.4.0",
+    "xo": "^0.16.0"
   },
   "scripts": {
-    "test-api": "mocha --check-leaks test.js",
-    "test-coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "npm run test-coverage",
-    "test": "npm run test-api",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
-    "make": "npm run lint && npm run test-coverage",
-    "bundle": "browserify index.js --no-builtins -s arrayIterate > array-iterate.js",
-    "postbundle": "esmangle array-iterate.js > array-iterate.min.js",
-    "build-md": "mdast . --quiet",
-    "build": "npm run bundle && npm run build-md"
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js -s arrayIterate > array-iterate.js",
+    "build-mangle": "esmangle array-iterate.js > array-iterate.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "guard-for-in": "off",
+      "max-lines": "off"
+    },
+    "ignores": [
+      "array-iterate.js",
+      "array-iterate.min.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "plugins": {
+      "comment-config": null,
+      "lint": {
+        "heading-increment": false,
+        "no-duplicate-headings": false,
+        "list-item-spacing": false
+      },
+      "github": null,
+      "toc": {
+        "tight": true,
+        "maxDepth": 3
+      },
+      "validate-links": null
+    },
+    "settings": {
+      "bullet": "*"
+    }
   }
 }
