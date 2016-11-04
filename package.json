@@ -9,21 +9,18 @@
     "iterate",
     "walk"
   ],
-  "dependencies": {
-    "has": "^1.0.1"
-  },
   "repository": "https://github.com/wooorm/array-iterate",
   "bugs": "https://github.com/wooorm/array-iterate/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
-  "engines": {
-    "node": ">=0.11.0"
-  },
   "files": [
     "index.js"
   ],
+  "dependencies": {
+    "has": "^1.0.1"
+  },
   "devDependencies": {
     "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
@@ -52,8 +49,7 @@
   "xo": {
     "space": true,
     "rules": {
-      "guard-for-in": "off",
-      "max-lines": "off"
+      "guard-for-in": "off"
     },
     "ignores": [
       "array-iterate.js"
