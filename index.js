@@ -1,12 +1,3 @@
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module array-iterate
- * @fileoverview `forEach` with the possibility to change the
- *   next position.
- */
-
 'use strict';
 
 /* Dependencies. */
