@@ -26,16 +26,19 @@ iterate([1, 2, 3, 4], function (value, index, values) {
     return 0;
   }
 }, context);
-/**
- * [String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
- * [String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
- */
+```
+
+Yields:
+
+```js
+[String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
+[String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
 ```
 
 ## API
