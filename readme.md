@@ -50,12 +50,9 @@ returns a `number`, iterates over the item at `number` next.
 
 ###### Parameters
 
-*   `values` (`Array`-like thing)
-    — Values to iterate over
-*   `callback` ([`Function`][callback])
-    — Callback given to `iterate`.
-*   `context` (`*`, optional)
-    — Context object to use when invoking `callback`.
+*   `values` (`Array`-like thing) — Values to iterate over
+*   `callback` ([`Function`][callback]) — Callback given to `iterate`
+*   `context` (`*`, optional) — Context object to use when invoking `callback`
 
 #### `function callback(value, index, values)`
 
@@ -63,9 +60,9 @@ Callback given to `iterate`.
 
 ###### Parameters
 
-*   `value` (`*`) — Current iteration;
-*   `index` (`number`) — Position of `value` in `values`;
-*   `values` (`Array`-like thing) — Currently iterated over.
+*   `value` (`*`) — Current iteration
+*   `index` (`number`) — Position of `value` in `values`
+*   `values` (`Array`-like thing) — Currently iterated over
 
 ###### Context
 
