@@ -1,10 +1,8 @@
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var iterate = require('./');
 
-/* Tests. */
 test('iterate()', function (t) {
   t.throws(
     function () {

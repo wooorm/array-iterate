@@ -4,14 +4,6 @@ module.exports = iterate;
 
 var own = {}.hasOwnProperty;
 
-/**
- * `Array#forEach()` with the possibility to change
- * the next position.
- *
- * @param {{length: number}} values - Values.
- * @param {arrayIterate~callback} callback - Callback given to `iterate`.
- * @param {*?} [context] - Context object to use when invoking `callback`.
- */
 function iterate(values, callback, context) {
   var index = -1;
   var result;
@@ -37,11 +29,8 @@ function iterate(values, callback, context) {
 
     result = callback.call(context, values[index], index, values);
 
-    /*
-     * If `callback` returns a `number`, move `index` over to
-     * `number`.
-     */
-
+    /* If `callback` returns a `number`, move `index` over to
+     * `number`. */
     if (typeof result === 'number') {
       /* Make sure that negative numbers do not break the loop. */
       if (result < 0) {
