@@ -1,10 +1,8 @@
 'use strict';
 
-/* Dependencies. */
-var has = require('has');
-
-/* Expose. */
 module.exports = iterate;
+
+var own = {}.hasOwnProperty;
 
 /**
  * `Array#forEach()` with the possibility to change
@@ -22,7 +20,7 @@ function iterate(values, callback, context) {
     throw new Error('Iterate requires that |this| not be ' + values);
   }
 
-  if (!has(values, 'length')) {
+  if (!own.call(values, 'length')) {
     throw new Error('Iterate requires that |this| has a `length`');
   }
 
