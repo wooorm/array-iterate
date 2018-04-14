@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var iterate = require('./');
+var iterate = require('.');
 
 test('iterate()', function (t) {
   t.throws(
@@ -79,7 +79,7 @@ test('iterate()', function (t) {
 
   t.test('should ignore missing values', function (st) {
     var magicNumber = 10;
-    var list = Array(magicNumber);
+    var list = new Array(magicNumber);
     var n;
 
     list.push(magicNumber + 1);
