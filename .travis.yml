@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- '4.0'
-- '8.0'
+- 'lts/boron'
+- 'node'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
@@ -10,7 +10,8 @@ deploy:
       secure: lueTq2a6EaQCtroieXyuk0MCe+0Kwx7dqAzEvggPvRV/iXRLNtt+DxS9GlAZQERS4mUzZTCLDYyoLt2UalLSAA9h20ALSpc3GLBLLPJsJzYXQE0QyoojLJjRb/OP6Yr/gRhnTvIUWfd6xyF1TU+nrbZ+1lhQZeOvGCPuHxe+AGY=
     on:
       tags: true
-      node: '4.0'
+      skip_cleanup: true
+      node: 'node'
   - provider: releases
     api_key:
       secure: Zi49QPpGdFZC25Ac0p50UO4emA2DzNHMgs/ZFMCKmvuEZgSJEDuoJvuMKHcfbFvSbqGhQI3k/XIZUPDoC64x8nxrY5YFwgz93ti+X3DrNDGYrVi89k3uzoF/VLgv8Jl0/BDtBr/Sx6fnF5Pbqviz06NjxCEX/7rqqIcWVLDtltw=
@@ -19,4 +20,5 @@ deploy:
       - "array-iterate.min.js"
     on:
       tags: true
-      node: '8.0'
+      skip_cleanup: true
+      node: 'node'
