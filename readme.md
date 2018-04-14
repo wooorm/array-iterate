@@ -14,31 +14,34 @@ npm install array-iterate
 ## Usage
 
 ```js
-var iterate = require('array-iterate');
-var isFirst = true;
-var context = 'iterate';
+var iterate = require('array-iterate')
 
-iterate([1, 2, 3, 4], function (value, index, values) {
+var isFirst = true
+var context = {hello: 'world'}
+
+iterate([1, 2, 3, 4], callback, context)
+
+function callback(value, index, values) {
   console.log(this, value, index, values)
 
   if (isFirst && index + 1 === values.length) {
-    isFirst = false;
-    return 0;
+    isFirst = false
+    return 0
   }
-}, context);
+}
 ```
 
 Yields:
 
 ```js
-[String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 1, 0, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 2, 1, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 3, 2, [ 1, 2, 3, 4 ]
-[String: 'iterate'], 4, 3, [ 1, 2, 3, 4 ]
+{hello: 'world'}, 1, 0, [1, 2, 3, 4]
+{hello: 'world'}, 2, 1, [1, 2, 3, 4]
+{hello: 'world'}, 3, 2, [1, 2, 3, 4]
+{hello: 'world'}, 4, 3, [1, 2, 3, 4]
+{hello: 'world'}, 1, 0, [1, 2, 3, 4]
+{hello: 'world'}, 2, 1, [1, 2, 3, 4]
+{hello: 'world'}, 3, 2, [1, 2, 3, 4]
+{hello: 'world'}, 4, 3, [1, 2, 3, 4]
 ```
 
 ## API
