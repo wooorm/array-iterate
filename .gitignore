@@ -5,3 +5,4 @@ coverage/
 node_modules/
 array-iterate.js
 array-iterate.min.js
+yarn.lock
