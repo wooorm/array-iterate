@@ -9,7 +9,7 @@
     "iterate",
     "walk"
   ],
-  "repository": "https://github.com/wooorm/array-iterate",
+  "repository": "wooorm/array-iterate",
   "bugs": "https://github.com/wooorm/array-iterate/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
