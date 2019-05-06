@@ -1,4 +1,9 @@
-# array-iterate [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# array-iterate
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
 
 [`Array#forEach()`][foreach] with the possibility to change the next
 position.
@@ -81,13 +86,21 @@ Callback given to `iterate`.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/array-iterate.svg
+[build-badge]: https://img.shields.io/travis/wooorm/array-iterate.svg
 
-[travis]: https://travis-ci.org/wooorm/array-iterate
+[build]: https://travis-ci.org/wooorm/array-iterate
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/array-iterate.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/array-iterate.svg
 
-[codecov]: https://codecov.io/github/wooorm/array-iterate
+[coverage]: https://codecov.io/github/wooorm/array-iterate
+
+[downloads-badge]: https://img.shields.io/npm/dm/array-iterate.svg
+
+[downloads]: https://www.npmjs.com/package/array-iterate
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/array-iterate.svg
+
+[size]: https://bundlephobia.com/result?p=array-iterate
 
 [npm]: https://docs.npmjs.com/cli/install
 
