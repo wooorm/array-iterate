@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/boron
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: Zi49QPpGdFZC25Ac0p50UO4emA2DzNHMgs/ZFMCKmvuEZgSJEDuoJvuMKHcfbFvSbqGhQI3k/XIZUPDoC64x8nxrY5YFwgz93ti+X3DrNDGYrVi89k3uzoF/VLgv8Jl0/BDtBr/Sx6fnF5Pbqviz06NjxCEX/7rqqIcWVLDtltw=
+    secure: U/krLVchHKzXs7ZljsnpIFaQHYhjVvc52ptGmK7Kfr7BF8AdGF78EJ+WLaJhc8umJ4EKazVHDePE6xGFDNv++D/5XFLSCyrvRKuZa9M3ZCkQRrNM59yg21wLMfbN/MCcfCqf3jZRJ/alFVGNzMQfwuJJn6nshJ588dkEa829eOQ=
   file:
-    - "array-iterate.js"
-    - "array-iterate.min.js"
+    - 'array-iterate.js'
+    - 'array-iterate.min.js'
   on:
     tags: true
