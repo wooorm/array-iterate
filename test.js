@@ -70,7 +70,7 @@ test('iterate()', function(t) {
 
       st.equal(value, index)
 
-      /* Stay on position `0` ten times. */
+      // Stay on position `0` ten times.
       if (n <= 10) {
         return 0
       }
