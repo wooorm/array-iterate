@@ -3,9 +3,9 @@
 var test = require('tape')
 var iterate = require('.')
 
-test('iterate()', function(t) {
+test('iterate()', function (t) {
   t.throws(
-    function() {
+    function () {
       iterate()
     },
     /^Error: Iterate requires that \|this\| not be undefined$/,
@@ -13,7 +13,7 @@ test('iterate()', function(t) {
   )
 
   t.throws(
-    function() {
+    function () {
       iterate({})
     },
     /Error: Iterate requires that \|this\| has a `length`/,
@@ -21,18 +21,18 @@ test('iterate()', function(t) {
   )
 
   t.throws(
-    function() {
+    function () {
       iterate([])
     },
     /^Error: `callback` must be a function$/,
     'should throw without `callback`'
   )
 
-  t.test('should invoke `callback` each step', function(st) {
+  t.test('should invoke `callback` each step', function (st) {
     var list = [0, 1, 2]
     var n = 0
 
-    iterate(list, function(value, index, values) {
+    iterate(list, function (value, index, values) {
       st.equal(value, n)
       st.equal(index, n)
       st.equal(values, list)
@@ -45,13 +45,13 @@ test('iterate()', function(t) {
     st.end()
   })
 
-  t.test('should invoke `callback` with context', function(st) {
+  t.test('should invoke `callback` with context', function (st) {
     var self = this
     var n = 0
 
     iterate(
       [1, 2, 3],
-      function() {
+      function () {
         st.equal(this, self)
         n++
       },
@@ -62,10 +62,10 @@ test('iterate()', function(t) {
     st.end()
   })
 
-  t.test('should use the given return value', function(st) {
+  t.test('should use the given return value', function (st) {
     var n = 0
 
-    iterate([0, 1, 2], function(value, index) {
+    iterate([0, 1, 2], function (value, index) {
       n++
 
       st.equal(value, index)
@@ -81,14 +81,14 @@ test('iterate()', function(t) {
     st.end()
   })
 
-  t.test('should ignore missing values', function(st) {
+  t.test('should ignore missing values', function (st) {
     var magicNumber = 10
     var list = new Array(magicNumber)
     var n
 
     list.push(magicNumber + 1)
 
-    iterate(list, function(value, index) {
+    iterate(list, function (value, index) {
       st.equal(value, magicNumber + 1)
       st.equal(index, magicNumber)
       n = index
@@ -99,11 +99,11 @@ test('iterate()', function(t) {
     st.end()
   })
 
-  t.test('should support negative indices', function(st) {
+  t.test('should support negative indices', function (st) {
     var n = 0
     var results = ['a', 'b', 'a', 'b', 'c', 'd']
 
-    iterate(['a', 'b', 'c', 'd'], function(value) {
+    iterate(['a', 'b', 'c', 'd'], function (value) {
       st.equal(value, results[n])
       n++
 

@@ -1,3 +1,5 @@
+coverage/
+*.json
+*.md
 array-iterate.js
 array-iterate.min.js
-coverage/
