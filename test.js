@@ -83,6 +83,7 @@ test('iterate()', function (t) {
 
   t.test('should ignore missing values', function (st) {
     var magicNumber = 10
+    // eslint-disable-next-line unicorn/no-new-array
     var list = new Array(magicNumber)
     var n
 
