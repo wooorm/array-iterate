@@ -4,6 +4,7 @@ import {arrayIterate} from './index.js'
 test('arrayIterate()', function (t) {
   t.throws(
     function () {
+      // @ts-ignore
       arrayIterate()
     },
     /^Error: Iterate requires that \|this\| not be undefined$/,
@@ -12,6 +13,7 @@ test('arrayIterate()', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore
       arrayIterate({})
     },
     /Error: Iterate requires that \|this\| has a `length`/,
@@ -20,6 +22,7 @@ test('arrayIterate()', function (t) {
 
   t.throws(
     function () {
+      // @ts-ignore
       arrayIterate([])
     },
     /^Error: `callback` must be a function$/,

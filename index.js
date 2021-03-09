@@ -1,6 +1,17 @@
 var own = {}.hasOwnProperty
 
-export function arrayIterate(values, callback, context) {
+/**
+ * Perform the specified action for each element in an array.
+ * When `callbackFn` returns a `number`, moves to the element at that index next.
+ *
+ * @template {any} Value
+ * @template {ArrayLike<Value>} Values
+ * @param {Values} values Values to iterate over
+ * @param {(value: Value, index: number, array: Values) => number | void} callbackFn A function that accepts up to three arguments
+ * @param {any} [thisArg] thisArg An object to which the this keyword can refer in `callbackFn`. If `thisArg` is omitted, `undefined` is used as the `this` value.
+ * @returns {void}
+ */
+export function arrayIterate(values, callbackFn, thisArg) {
   var index = -1
   var result
 
@@ -12,7 +23,7 @@ export function arrayIterate(values, callback, context) {
     throw new Error('Iterate requires that |this| has a `length`')
   }
 
-  if (typeof callback !== 'function') {
+  if (typeof callbackFn !== 'function') {
     throw new Error('`callback` must be a function')
   }
 
@@ -23,7 +34,7 @@ export function arrayIterate(values, callback, context) {
       continue
     }
 
-    result = callback.call(context, values[index], index, values)
+    result = callbackFn.call(thisArg, values[index], index, values)
 
     // If `callback` returns a `number`, move `index` over to `number`.
     if (typeof result === 'number') {

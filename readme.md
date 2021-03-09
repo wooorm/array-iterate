@@ -24,11 +24,11 @@ npm install array-iterate
 import {arrayIterate} from 'array-iterate'
 
 var isFirst = true
-var context = {hello: 'world'}
+var thisArg = {hello: 'world'}
 
-arrayIterate([1, 2, 3, 4], callback, context)
+arrayIterate([1, 2, 3, 4], callbackFn, thisArg)
 
-function callback(value, index, values) {
+function callbackFn(value, index, values) {
   console.log(this, value, index, values)
 
   if (isFirst && index + 1 === values.length) {
@@ -56,18 +56,23 @@ Yields:
 This package exports the following identifiers: `arrayIterate`.
 There is no default export.
 
-### `arrayIterate(values, callback[, context])`
+### `arrayIterate(values, callbackFn[, thisArg])`
 
-Works just like [`Array#forEach()`][foreach], but when `callback` returns a
-`number`, iterates over the item at `number` next.
+Perform the specified action for each element in an array, so works just like
+[`Array#forEach()`][foreach].
+When `callbackFn` returns a `number`, moves to the element at that index next.
 
 ###### Parameters
 
-*   `values` (`Array`-like thing) — Values to iterate over
-*   `callback` ([`Function`][callback]) — Callback given to `iterate`
-*   `context` (`*`, optional) — Context object to use when invoking `callback`
+*   `values` (`Array`-like thing)
+    — Values to iterate over
+*   `callbackFn` ([`Function`][callback])
+    — A function that accepts up to three arguments
+*   `thisArg` (`*`, optional)
+    — An object to which the this keyword can refer in `callbackFn`.
+    If `thisArg` is omitted, `undefined` is used as the `this` value
 
-#### `function callback(value, index, values)`
+#### `function callbackFn(value, index, values)`
 
 Callback given to `iterate`.
 
@@ -79,7 +84,7 @@ Callback given to `iterate`.
 
 ###### Context
 
-`context`, when given to `iterate`.
+`thisArg` when given to `arrayIterate` or `undefined`
 
 ###### Returns
 
@@ -115,4 +120,4 @@ Callback given to `iterate`.
 
 [foreach]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 
-[callback]: #function-callbackvalue-index-values
+[callback]: #function-callbackfnvalue-index-values
