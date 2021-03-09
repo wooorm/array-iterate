@@ -1,8 +1,5 @@
-.nyc_output/
+*.log
 coverage/
 node_modules/
-*.log
 .DS_Store
-array-iterate.js
-array-iterate.min.js
 yarn.lock

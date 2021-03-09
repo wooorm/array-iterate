@@ -1,10 +1,6 @@
-'use strict'
-
-module.exports = iterate
-
 var own = {}.hasOwnProperty
 
-function iterate(values, callback, context) {
+export function arrayIterate(values, callback, context) {
   var index = -1
   var result
 

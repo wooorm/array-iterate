@@ -9,6 +9,9 @@
 
 ## Install
 
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -18,12 +21,12 @@ npm install array-iterate
 ## Use
 
 ```js
-var iterate = require('array-iterate')
+import {arrayIterate} from 'array-iterate'
 
 var isFirst = true
 var context = {hello: 'world'}
 
-iterate([1, 2, 3, 4], callback, context)
+arrayIterate([1, 2, 3, 4], callback, context)
 
 function callback(value, index, values) {
   console.log(this, value, index, values)
@@ -50,7 +53,10 @@ Yields:
 
 ## API
 
-### `iterate(values, callback[, context])`
+This package exports the following identifiers: `arrayIterate`.
+There is no default export.
+
+### `arrayIterate(values, callback[, context])`
 
 Works just like [`Array#forEach()`][foreach], but when `callback` returns a
 `number`, iterates over the item at `number` next.

@@ -1,12 +1,10 @@
-'use strict'
+import test from 'tape'
+import {arrayIterate} from './index.js'
 
-var test = require('tape')
-var iterate = require('.')
-
-test('iterate()', function (t) {
+test('arrayIterate()', function (t) {
   t.throws(
     function () {
-      iterate()
+      arrayIterate()
     },
     /^Error: Iterate requires that \|this\| not be undefined$/,
     'should throw without `values`'
@@ -14,7 +12,7 @@ test('iterate()', function (t) {
 
   t.throws(
     function () {
-      iterate({})
+      arrayIterate({})
     },
     /Error: Iterate requires that \|this\| has a `length`/,
     'should throw without `values.length`'
@@ -22,7 +20,7 @@ test('iterate()', function (t) {
 
   t.throws(
     function () {
-      iterate([])
+      arrayIterate([])
     },
     /^Error: `callback` must be a function$/,
     'should throw without `callback`'
@@ -32,7 +30,7 @@ test('iterate()', function (t) {
     var list = [0, 1, 2]
     var n = 0
 
-    iterate(list, function (value, index, values) {
+    arrayIterate(list, function (value, index, values) {
       st.equal(value, n)
       st.equal(index, n)
       st.equal(values, list)
@@ -49,7 +47,7 @@ test('iterate()', function (t) {
     var self = this
     var n = 0
 
-    iterate(
+    arrayIterate(
       [1, 2, 3],
       function () {
         st.equal(this, self)
@@ -65,7 +63,7 @@ test('iterate()', function (t) {
   t.test('should use the given return value', function (st) {
     var n = 0
 
-    iterate([0, 1, 2], function (value, index) {
+    arrayIterate([0, 1, 2], function (value, index) {
       n++
 
       st.equal(value, index)
@@ -89,7 +87,7 @@ test('iterate()', function (t) {
 
     list.push(magicNumber + 1)
 
-    iterate(list, function (value, index) {
+    arrayIterate(list, function (value, index) {
       st.equal(value, magicNumber + 1)
       st.equal(index, magicNumber)
       n = index
@@ -104,7 +102,7 @@ test('iterate()', function (t) {
     var n = 0
     var results = ['a', 'b', 'a', 'b', 'c', 'd']
 
-    iterate(['a', 'b', 'c', 'd'], function (value) {
+    arrayIterate(['a', 'b', 'c', 'd'], function (value) {
       st.equal(value, results[n])
       n++
 
