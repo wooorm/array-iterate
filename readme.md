@@ -85,9 +85,9 @@ Callback given to `iterate`.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/wooorm/array-iterate.svg
+[build-badge]: https://github.com/wooorm/array-iterate/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/wooorm/array-iterate
+[build]: https://github.com/wooorm/array-iterate/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/array-iterate.svg
 
