@@ -30,8 +30,8 @@ test('arrayIterate()', function (t) {
   )
 
   t.test('should invoke `callback` each step', function (st) {
-    var list = [0, 1, 2]
-    var n = 0
+    const list = [0, 1, 2]
+    let n = 0
 
     arrayIterate(list, function (value, index, values) {
       st.equal(value, n)
@@ -47,16 +47,16 @@ test('arrayIterate()', function (t) {
   })
 
   t.test('should invoke `callback` with context', function (st) {
-    var self = this
-    var n = 0
+    const context = {tada: true}
+    let n = 0
 
     arrayIterate(
       [1, 2, 3],
       function () {
-        st.equal(this, self)
+        st.equal(this, context)
         n++
       },
-      self
+      context
     )
 
     st.equal(n, 3)
@@ -64,7 +64,7 @@ test('arrayIterate()', function (t) {
   })
 
   t.test('should use the given return value', function (st) {
-    var n = 0
+    let n = 0
 
     arrayIterate([0, 1, 2], function (value, index) {
       n++
@@ -83,10 +83,10 @@ test('arrayIterate()', function (t) {
   })
 
   t.test('should ignore missing values', function (st) {
-    var magicNumber = 10
+    const magicNumber = 10
     // eslint-disable-next-line unicorn/no-new-array
-    var list = new Array(magicNumber)
-    var n
+    const list = new Array(magicNumber)
+    let n
 
     list.push(magicNumber + 1)
 
@@ -102,8 +102,8 @@ test('arrayIterate()', function (t) {
   })
 
   t.test('should support negative indices', function (st) {
-    var n = 0
-    var results = ['a', 'b', 'a', 'b', 'c', 'd']
+    let n = 0
+    const results = ['a', 'b', 'a', 'b', 'c', 'd']
 
     arrayIterate(['a', 'b', 'c', 'd'], function (value) {
       st.equal(value, results[n])

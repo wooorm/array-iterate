@@ -1,4 +1,4 @@
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
 /**
  * Perform the specified action for each element in an array.
@@ -12,8 +12,8 @@ var own = {}.hasOwnProperty
  * @returns {void}
  */
 export function arrayIterate(values, callbackFn, thisArg) {
-  var index = -1
-  var result
+  let index = -1
+  let result
 
   if (!values) {
     throw new Error('Iterate requires that |this| not be ' + values)
@@ -24,7 +24,7 @@ export function arrayIterate(values, callbackFn, thisArg) {
   }
 
   if (typeof callbackFn !== 'function') {
-    throw new Error('`callback` must be a function')
+    throw new TypeError('`callback` must be a function')
   }
 
   // The length might change, so we do not cache it.
