@@ -9,6 +9,8 @@
  *   Element in array.
  * @param index
  *   Index of `value` in `values`.
+ * @param values
+ *   List.
  * @param [thisArg]
  *   Context object
  * @returns {number|void}
