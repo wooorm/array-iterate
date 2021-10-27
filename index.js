@@ -13,7 +13,6 @@ const own = {}.hasOwnProperty
  */
 export function arrayIterate(values, callbackFn, thisArg) {
   let index = -1
-  let result
 
   if (!values) {
     throw new Error('Iterate requires that |this| not be ' + values)
@@ -34,7 +33,7 @@ export function arrayIterate(values, callbackFn, thisArg) {
       continue
     }
 
-    result = callbackFn.call(thisArg, values[index], index, values)
+    const result = callbackFn.call(thisArg, values[index], index, values)
 
     // If `callback` returns a `number`, move `index` over to `number`.
     if (typeof result === 'number') {
