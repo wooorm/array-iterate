@@ -1,6 +1,6 @@
 {
   "name": "array-iterate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "`Array#forEach()` but it’s possible to define where to move to next",
   "license": "MIT",
   "keywords": [
