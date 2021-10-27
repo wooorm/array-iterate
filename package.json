@@ -1,7 +1,7 @@
 {
   "name": "array-iterate",
   "version": "2.0.0",
-  "description": "forEach with the possibility to change the next position",
+  "description": "`Array#forEach()` but it’s possible to define where to move to next",
   "license": "MIT",
   "keywords": [
     "array",
