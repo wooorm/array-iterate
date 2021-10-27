@@ -4,7 +4,7 @@ import {arrayIterate} from './index.js'
 test('arrayIterate()', function (t) {
   t.throws(
     function () {
-      // @ts-ignore
+      // @ts-expect-error: missing arguments.
       arrayIterate()
     },
     /^Error: Iterate requires that \|this\| not be undefined$/,
@@ -13,7 +13,7 @@ test('arrayIterate()', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore
+      // @ts-expect-error: incorrect arguments.
       arrayIterate({})
     },
     /Error: Iterate requires that \|this\| has a `length`/,
@@ -22,10 +22,10 @@ test('arrayIterate()', function (t) {
 
   t.throws(
     function () {
-      // @ts-ignore
+      // @ts-expect-error: missing arguments.
       arrayIterate([])
     },
-    /^Error: `callback` must be a function$/,
+    /^TypeError: `callback` must be a function$/,
     'should throw without `callback`'
   )
 
@@ -84,8 +84,10 @@ test('arrayIterate()', function (t) {
 
   t.test('should ignore missing values', function (st) {
     const magicNumber = 10
+    /** @type {(number|undefined)[]} */
     // eslint-disable-next-line unicorn/no-new-array
     const list = new Array(magicNumber)
+    /** @type {number|undefined} */
     let n
 
     list.push(magicNumber + 1)
