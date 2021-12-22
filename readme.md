@@ -62,7 +62,7 @@ let first = true
 
 arrayIterate(
   [1, 2, 3, 4],
-  (value, index, values) => {
+  function (value, index, values){
     console.log(this, value, index, values)
 
     // Repeat once.
@@ -107,7 +107,7 @@ next.
 *   `callbackFn` (`Function`)
     — function called for each element, can return the `index` to move to next
 *   `thisArg` (`*`, optional)
-    — optional object assigned as `this` in `callbackFn`
+    — optional object passed as `this` in `callbackFn`
 
 ###### Returns
 
