@@ -107,12 +107,7 @@ next.
 *   `callbackFn` (`Function`)
     — function called for each element, can return the `index` to move to next
 *   `thisArg` (`*`, optional)
-    — optional object assigned as `this` in `callbackFn`
-    > notice:
-    >
-    > Invalid if the callback is an arrow function,  for more information See:
-    > [ECMAScript 2015 Spec](https://262.ecma-international.org/6.0/#sec-arrow-function-definitions-runtime-semantics-evaluation)
-
+    — optional object passed as `this` in `callbackFn`
 
 ###### Returns
 
