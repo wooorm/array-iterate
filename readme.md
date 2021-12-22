@@ -71,7 +71,7 @@ arrayIterate(
       return 0
     }
   },
-  {hello: 'world'} // Invalid if the callback is an arrow function
+  {hello: 'world'}
 )
 ```
 
