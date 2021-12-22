@@ -62,7 +62,7 @@ let first = true
 
 arrayIterate(
   [1, 2, 3, 4],
-  (value, index, values) => {
+  function (value, index, values){
     console.log(this, value, index, values)
 
     // Repeat once.
@@ -71,7 +71,7 @@ arrayIterate(
       return 0
     }
   },
-  {hello: 'world'}
+  {hello: 'world'} // Invalid if the callback is an arrow function
 )
 ```
 
@@ -108,6 +108,11 @@ next.
     — function called for each element, can return the `index` to move to next
 *   `thisArg` (`*`, optional)
     — optional object assigned as `this` in `callbackFn`
+    > notice:
+    >
+    > Invalid if the callback is an arrow function,  for more information See:
+    > [ECMAScript 2015 Spec](https://262.ecma-international.org/6.0/#sec-arrow-function-definitions-runtime-semantics-evaluation)
+
 
 ###### Returns
 
