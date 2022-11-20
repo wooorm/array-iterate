@@ -33,7 +33,7 @@ skip a few places ahead or backwards when moving through an array.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+, 16.0+), install with [npm][]:
 
 ```sh
 npm install array-iterate
@@ -90,7 +90,7 @@ Yields:
 
 ## API
 
-This package exports the following identifiers: `arrayIterate`.
+This package exports the identifier `arrayIterate`.
 There is no default export.
 
 ### `arrayIterate(values, callbackFn[, thisArg])`
@@ -130,17 +130,17 @@ Callback given to `iterate`.
 
 ###### Returns
 
-`number` or `undefined` — the `index` to move to next.
+The optional `index` to move to next (`number` or `undefined`)
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-There is also a `CallbackFn` type export that represents the callback function.
+It exports the additional type `CallbackFn`.
 
 ## Compatibility
 
 This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 It also works in Deno and modern browsers.
 
 ## Security
